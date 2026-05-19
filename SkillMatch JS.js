@@ -35,10 +35,12 @@ const vagas = [
 
 function calcularCompatibilidade(vaga, candidato) {
   
-  let totalRequisitos = vaga.requisitos.length
+  let totalRequisitos = vaga.requisitos.length;
 
-  let requisitosAtendidos = vaga.requisitos.filter(requisito => candidato.habilidades.includes(requisito))
+  let requisitosAtendidos = vaga.requisitos.filter(requisito => candidato.habilidades.includes(requisito));
 
+  let habilidadesFaltantes = vaga.requisitos.filter(requisito => !candidato.habilidades.includes(requisito));
+  
   let chanceDeContrato;
 
   let compatibilidade = requisitosAtendidos.length / totalRequisitos * 100;
@@ -51,17 +53,19 @@ function calcularCompatibilidade(vaga, candidato) {
       chanceDeContrato = "Alta compatibilidade";
   };
   
+
   return {
     empresa: vaga.empresa,
     cargo: vaga.cargo,
     compatibilidade: compatibilidade.toFixed(0) + "%",
-    classificação: chanceDeContrato
-  }
+    classificação: chanceDeContrato,
+    habilidadesFaltantes: habilidadesFaltantes
+  };
 };
 
-const resultados = vagas.map(vaga => calcularCompatibilidade(vaga, candidato))
+const resultados = vagas.map(vaga => calcularCompatibilidade(vaga, candidato));
 
-console.log(resultados)
+console.log(resultados);
 
 
 
