@@ -57,7 +57,7 @@ function calcularCompatibilidade(vaga, candidato) {
   return {
     empresa: vaga.empresa,
     cargo: vaga.cargo,
-    compatibilidade: compatibilidade.toFixed(0) + "%",
+    compatibilidade: compatibilidade.toFixed(0),
     classificação: chanceDeContrato,
     habilidadesFaltantes: habilidadesFaltantes
   };
@@ -65,10 +65,13 @@ function calcularCompatibilidade(vaga, candidato) {
 
 const resultados = vagas.map(vaga => calcularCompatibilidade(vaga, candidato));
 
-console.log(resultados);
-
-
-
+const vagaMaisCompativel = resultados.reduce((melhor, atual) => {
+  if (atual.compatibilidade > melhor.compatibilidade) {
+    return atual
+  } else {
+    return melhor
+  }
+})
 
 
 
