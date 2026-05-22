@@ -9,7 +9,7 @@ const vagas = [
   {
     id: 1,
     empresa: "FrontTech",
-    cargo: "Desenvolvedor Front-End Sênior",
+    cargo: "Desenvolvedor Front-End",
     requisitos: ["JavaScript", "GitHub", "HTML", "CSS"],
     salario: 3800,
     modalidade: "Remoto"
@@ -32,6 +32,35 @@ const vagas = [
   }
 ];
 
+class Vaga {
+  constructor(empresa, cargo, requisitos, salario, modalidade) {
+    this.empresa = empresa;
+    this.cargo = cargo;
+    this.requisitos = requisitos;
+    this.salario = salario;
+    this.modalidade = modalidade;
+  }
+
+  exibirResumo() {
+    return `Cargo de ${this.cargo} na empresa ${this.empresa}`;
+  }
+};
+
+class VagaFrontEnd extends Vaga {
+  constructor(empresa, cargo, requisito, salario, modalidade, nivelExperiencia) {
+    super(empresa, cargo, requisito, salario, modalidade);
+    this.nivelExperiencia = nivelExperiencia;
+  }
+
+  exibirTrabalho() {
+    return `É necessário que seja ${this.nivelExperiencia} para poder atender os requisitos da vaga de ${this.empresa}`;
+  }
+}
+
+const vaga1 = new VagaFrontEnd("FrontTech", "Desenvolvedor Front-End", ["JavaScript", "GitHub", "HTML", "CSS"], 3800, "Remoto", "Sênior")
+
+console.log(vaga1.exibirResumo())
+console.log(vaga1.exibirTrabalho())
 
 function calcularCompatibilidade(vaga, candidato) {
   
@@ -71,52 +100,29 @@ const vagaMaisCompativel = resultados.reduce((melhor, atual) => {
   } else {
     return melhor
   }
-})
+});
+
+let habilidadeQueFalta = resultados.map(vaga => vaga.habilidadesFaltantes)
+
+let aprender = habilidadeQueFalta.flat()
+
+let aprenderUnico = [...new Set(aprender)]
+
+console.log("Priorize estudar " + aprenderUnico.join(", ") + " pois esses conteúdos aparecem nas vagas analisadas")
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-class Vaga {
-  constructor(empresa, cargo, requisitos, salario, modalidade) {
-    this.empresa = empresa;
-    this.cargo = cargo;
-    this.requisitos = requisitos;
-    this.salario = salario;
-    this.modalidade = modalidade;
-  }
-
-  exibirResumo() {
-    return `${this.cargo} na empresa ${this.empresa}`;
-  }
+function finalizarAnalise(nomeDoCandidato, callback) {
+  console.log("Análise concluida.");
+  callback(nomeDoCandidato);
 };
 
-class VagaFrontEnd extends Vaga {
-  constructor(empresa, cargo, requisitos, salario, modalidade, nivel) {
-    super(empresa, cargo, requisitos, salario, modalidade);
-    this.nivel = nivel;
-  }
+function exibirMensagem(nome) {
+  console.log(`${nome}, revise suas habilidades faltantes para conseguir melhorar na área!`)
+}
 
-  exibirNivel() {
-    return `Nível da vaga: ${this.nivel}`;
-  }
-};
-
-function finalizarAnalise(nomeCandidato, callback) {
-  console.log("Análise finalizada.");
-  callback(nomeCandidato);
-};
+finalizarAnalise(candidato.nome, exibirMensagem);
 
 function exibirMensagemFinal(nome) {
   console.log(`${candidato.nome}, revise suas habilidades faltantes e atualize seu plano de estudos.`);
