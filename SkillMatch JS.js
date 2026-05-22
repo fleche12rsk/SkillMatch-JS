@@ -71,14 +71,13 @@ const vagaMaisCompativel = resultados.reduce((melhor, atual) => {
   } else {
     return melhor
   }
-})
+});
 
+let habilidadeQueFalta = resultados.map(vaga => vaga.habilidadesFaltantes)
 
+let aprender = habilidadeQueFalta.flat()
 
-
-
-
-
+let aprenderUnico = [...new Set(aprender)]
 
 
 
