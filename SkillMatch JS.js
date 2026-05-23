@@ -1,9 +1,18 @@
+//===============================================================================//
+
+// DADOS DO CANDIDATO //
+
+// FAVOR EDITAR AS HABILIDADES E EXPERIÊNCIA DE ACORDO COM O SEU PERFIL PARA MELHOR ANÁLISE DE COMPATIBILIDADE //
 const candidato = {
   nome: "Ana",
   area: "Front-End",
   habilidades: ["JavaScript", "GitHub", "Lógica de Programação", "Kanban"],
   experienciaMeses: 3
 };
+
+//===============================================================================//
+
+// DADOS DAS VAGAS //
 
 const vagas = [
   {
@@ -58,9 +67,12 @@ class VagaFrontEnd extends Vaga {
 }
 
 const vaga1 = new VagaFrontEnd("FrontTech", "Desenvolvedor Front-End", ["JavaScript", "GitHub", "HTML", "CSS"], 3800, "Remoto", "Sênior")
+const vaga2 = new VagaFrontEnd("CodeTech", "Desenvolvedor de programas com JavaScript", ["JavaScript", "Kanban", "GitHub", "Node.js"], 1800, "Híbrido", "Júnior")
+const vaga3 = new VagaFrontEnd("WebProduce", "Desenvolvedor JavaScript e React", ["JavaScript", "Kanban", "GitHub", "Node.js"], 2400, "Remoto", "Júnior")
 
-console.log(vaga1.exibirResumo())
-console.log(vaga1.exibirTrabalho())
+//===============================================================================//
+
+// ANÁLISE DE COMPATIBILIDADE //
 
 function calcularCompatibilidade(vaga, candidato) {
   
@@ -88,6 +100,7 @@ function calcularCompatibilidade(vaga, candidato) {
     cargo: vaga.cargo,
     compatibilidade: compatibilidade.toFixed(0),
     classificação: chanceDeContrato,
+    requisitosAtendidos: requisitosAtendidos,
     habilidadesFaltantes: habilidadesFaltantes
   };
 };
@@ -108,25 +121,17 @@ let aprender = habilidadeQueFalta.flat()
 
 let aprenderUnico = [...new Set(aprender)]
 
-console.log("Priorize estudar " + aprenderUnico.join(", ") + " pois esses conteúdos aparecem nas vagas analisadas")
+//===============================================================================//
 
-
-
+// MENSAGEM DE FECHAMENTO //
 
 function finalizarAnalise(nomeDoCandidato, callback) {
-  console.log("Análise concluida.");
   callback(nomeDoCandidato);
 };
 
 function exibirMensagem(nome) {
   console.log(`${nome}, revise suas habilidades faltantes para conseguir melhorar na área!`)
 }
-
-finalizarAnalise(candidato.nome, exibirMensagem);
-
-function exibirMensagemFinal(nome) {
-  console.log(`${candidato.nome}, revise suas habilidades faltantes e atualize seu plano de estudos.`);
-};
 
 function buscarVagasSimuladas() {
   return new Promise((resolve) => {
@@ -137,8 +142,40 @@ function buscarVagasSimuladas() {
 };
 
 async function iniciarSistema() {
-  const vagasCarregadas = await buscarVagasSimuladas();
-  console.log("Vagas carregadas com sucesso!");
-  console.log(vagasCarregadas);
+  await buscarVagasSimuladas();
+  await buscarVagasSimuladas();
+  console.log("=== SkillMatch JS ===");
+  await buscarVagasSimuladas();
+  console.log(`Candidato: ${candidato.nome}`);
+  console.log(`Área de interesse: ${candidato.area}`);
+  console.log("Habilidades: " + candidato.habilidades.join(", "));
+  console.log(`Experiência: ${candidato.experienciaMeses} meses`);
+  console.log("=====================");
+  await buscarVagasSimuladas();
+  console.log("Verificando vagas disponíveis...");
+  await buscarVagasSimuladas();
+  await buscarVagasSimuladas();
+  await buscarVagasSimuladas();
+  console.log("Carregando vagas disponíveis...");
+  await buscarVagasSimuladas();
+  await buscarVagasSimuladas();
+  await buscarVagasSimuladas();
+  await buscarVagasSimuladas();
+  console.log("Analise de compatibilidade concluída! Veja os resultados abaixo:");
+  vagas.forEach(vaga => {
+    const resultado = calcularCompatibilidade(vaga, candidato);
+    console.log(`Vaga: ${resultado.cargo} na empresa ${resultado.empresa}`);
+    console.log(`Compatibilidade: ${resultado.compatibilidade}% - ${resultado.classificação}`);
+    console.log(`Salário: R$ ${vaga.salario}`)
+    console.log(`Requisitos atendidos: ${resultado.requisitosAtendidos.join(", ")}`);
+    console.log(`Habilidades faltantes: ${resultado.habilidadesFaltantes.join(", ")}`);
+  });
+  console.log("======================");
+  console.log(`A vaga mais compatível é: ${vagaMaisCompativel.cargo} na empresa ${vagaMaisCompativel.empresa} com ${vagaMaisCompativel.compatibilidade}% de compatibilidade.`);
+  console.log("======================");
+  console.log("Os pontos a melhorar são: " + aprenderUnico.join(", "));
+  finalizarAnalise(candidato.nome, exibirMensagem);
+  console.log("Obrigado por usar o SkillMatch JS! Boa sorte na sua busca por uma vaga de Front-End!");
+  console.log("======================");
 };
-
+iniciarSistema();
