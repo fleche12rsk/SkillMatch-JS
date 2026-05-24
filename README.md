@@ -1,7 +1,7 @@
 # SkillMatch-JS
-<<<<<<< Updated upstream
 Um projeto de um simulador simples de compatibilidade entre um perfil de candidato e vagas de front-end júnior, visando ser o mais próximo de uma situação real: analisar requisitos de vagas, comparar habilidades, calcular aderência e identificar pontos de melhoria.
-=======
+
+Um projeto de um simulador simples de compatibilidade entre um perfil de candidato e vagas de front-end júnior, visando ser o mais próximo de uma situação real: analisar requisitos de vagas, comparar habilidades, calcular aderência e identificar pontos de melhoria.
 
 ## Sobre o projeto
 
@@ -55,4 +55,3 @@ Conceitos que foram aprendidos e aplicados no projeto:
 **[ClickUp Kanban]** - https://sharing.clickup.com/90171247352/b/6-901713861386-2/skill-match-board (devido a erros recorrente a planos de assinaturas, no link não será possível vizualizar os tópicos "BACKLOG" e "EM ANDAMENTO", mas é possível vizualizar via as fotos a cima)
 **[GitHub]** - https://github.com/fleche12rsk/SkillMatch-JS/tree/main (link do repositório do projeto no GitHub)
 **[Link vídeo]** - https://drive.google.com/file/d/1PE_F1JjY5K3Om7g3WU5ZJ6YXGw2cx1VU/view?usp=sharing (link do vídeo explicando melhor sobre o projeto)
->>>>>>> Stashed changes
