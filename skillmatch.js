@@ -144,7 +144,7 @@ function buscarVagasSimuladas() {
 async function iniciarSistema() {
   await buscarVagasSimuladas();
   await buscarVagasSimuladas();
-  console.log("=== SkillMatch JS ===");
+  console.log("=== SkillMatch-JS ===");
   await buscarVagasSimuladas();
   console.log(`Candidato: ${candidato.nome}`);
   console.log(`Área de interesse: ${candidato.area}`);
@@ -162,6 +162,8 @@ async function iniciarSistema() {
   await buscarVagasSimuladas();
   await buscarVagasSimuladas();
   console.log("Analise de compatibilidade concluída! Veja os resultados abaixo:");
+  console.log("======================");
+  await buscarVagasSimuladas();
   vagas.forEach(vaga => {
     const resultado = calcularCompatibilidade(vaga, candidato);
     console.log(`Vaga: ${resultado.cargo} na empresa ${resultado.empresa}`);
@@ -169,11 +171,14 @@ async function iniciarSistema() {
     console.log(`Salário: R$ ${vaga.salario}`)
     console.log(`Requisitos atendidos: ${resultado.requisitosAtendidos.join(", ")}`);
     console.log(`Habilidades faltantes: ${resultado.habilidadesFaltantes.join(", ")}`);
+    console.log("======================");
   });
-  console.log("======================");
   console.log(`A vaga mais compatível é: ${vagaMaisCompativel.cargo} na empresa ${vagaMaisCompativel.empresa} com ${vagaMaisCompativel.compatibilidade}% de compatibilidade.`);
   console.log("======================");
-  console.log("Os pontos a melhorar são: " + aprenderUnico.join(", "));
+  console.log("Os pontos a melhorar são: ")
+  for (let habilidade of aprenderUnico) {
+    console.log("- " + habilidade);
+  };
   finalizarAnalise(candidato.nome, exibirMensagem);
   console.log("Obrigado por usar o SkillMatch JS! Boa sorte na sua busca por uma vaga de Front-End!");
   console.log("======================");
